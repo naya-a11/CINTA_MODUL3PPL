@@ -14,5 +14,3 @@ class Note extends Model
         return $this->belongsTo(User::class, 'penulis_id');
     }
 }
-
-LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
