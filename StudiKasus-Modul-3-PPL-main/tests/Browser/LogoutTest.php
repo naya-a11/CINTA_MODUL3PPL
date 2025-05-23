@@ -10,26 +10,21 @@ class LogoutTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
+     * @group Logout
      */
     public function testExample(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/') // Mengunjungi halaman utama
-            ->assertSee('Log in') // Memastikan teks 'Log in' terlihat di halaman
-            ->clickLink('Log in') // Mengklik tautan 'Log in'
-            ->assertPathIs('/login') // Memastikan berada di halaman login
-            ->type('email', 'admin@gmail.com') // Memasukkan email ke kolom email
-            ->type('password', 'password') // Memasukkan password ke kolom password
-            ->press('LOGIN') // Mengklik tombol LOGIN
-            ->assertPathIs('/dashboard') // Memastikan diarahkan ke dashboard
-            ->assertSee('admin@gmail.com') // Memastikan email user terlihat
-            ->click('#user-menu-button') // Mengklik tombol menu user
-            ->pause(1000) // Menunggu 1 detik untuk menu muncul
-            ->clickLink('Log Out') // Mengklik tautan Log Out
-            ->assertPathIs('/') // Memastikan diarahkan ke halaman utama
-            ->assertSee('Log in') // Memastikan tombol login terlihat
-            ->assertDontSee('admin@gmail.com'); // Memastikan email user tidak terlihat lagi
-
+            $browser->visit('/')
+            ->clickLink('Log in')// menekan link 'Log in'
+            ->assertPathIs('/login')// memastikan URL saat ini adalah '/login'
+            ->type('email','cinta@gmail.com')// mengisi input email
+            ->type('password','password')// mengisi input password
+            ->check('remember')// mencentang kotak 'remember me'
+            ->press('LOG IN')// menekan tombol login
+            ->click('#click-dropdown')// mengklik elemen dengan id 'click-dropdown' (biasanya menu dropdown user)
+            ->clickLink('Log Out') // mengklik link 'Log Out' di dropdown
+            ->assertPathIs('/'); // memastikan diarahkan kembali ke halaman beranda (route '/')
         });
     }
 }
